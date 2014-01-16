@@ -4,11 +4,13 @@
  */
 package parser;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author weiweisu
  */
-public class LinkStack implements Stack{
+public class LinkStack implements Stack {
     private Node first = null;
     
     private class Node {
@@ -21,13 +23,16 @@ public class LinkStack implements Stack{
     }
     
     public void push(Character item) {
-        Node oldfirst = first;
+        Node oldFirst = first;
         first = new Node();
         first.item = item;
-        first.next = oldfirst;
+        first.next = oldFirst;
     }
     
-    public Character pop() {
+    public Character pop() throws NoSuchElementException {
+        if (isEmpty())
+            throw new NoSuchElementException("Stack underflow");
+
         Character item = first.item;
         first = first.next;
         return item;

@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  *
  * @author weiweisu
  */
-public class ArrayStack implements Stack{
+public class ArrayStack implements Stack {
     private int maxSize;
     private int emptyIndex;
     private int topIndex;
@@ -22,24 +22,26 @@ public class ArrayStack implements Stack{
         emptyIndex = -1;
         topIndex = emptyIndex;
         items = new Character[maxSize];
-       
     }
     
     public void push(Character c) {
-        if(maxSize == items.length) resize(2*items.length);
+        if(maxSize == items.length)
+            resize(2*items.length);
         topIndex++;
         items[topIndex] = c;
     }
     
-    public Character pop() {
-        if(isEmpty()) throw new NoSuchElementException("Stack underflow");
+    public Character pop() throws NoSuchElementException {
+        if(isEmpty())
+            throw new NoSuchElementException("Stack underflow");
+
         Character c = items[topIndex];
         items[topIndex] = null;
         topIndex--;
         
-        if(maxSize > 0 && maxSize == items.length/4) resize(items.length/2);
+        if(maxSize > 0 && maxSize == items.length/4)
+            resize(items.length/2);
         return c;
-        
     }
     
     public boolean isEmpty() {
